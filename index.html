@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack a Face</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('emoji.jpg') no-repeat center center fixed;
+    background-size: cover;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            color: white;
+        }
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .description {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .play-button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: orange;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 25%;
+            margin-bottom: 25%;
+            color: white;
+        }
+        .game-menu {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        .game-menu button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .game-menu button:hover {
+            background: lightgray;
+        }
+    </style>
+    <script>
+        function showGameMenu() {
+            document.getElementById("gameMenu").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="title"><h1>WHACK A FACE</h1></div>
+        <div class="description">Smash your stress away with Whack a Face!</div>
+        <button class="play-button" onclick="showGameMenu()">PLAY NOW</button>
+    </div>
+    <div class="game-menu" id="gameMenu">
+        <p>You are not currently logged in.<br>What would you like to do?</p>
+        <button><a href="sample.html">Play as Guest</a></button>
+        <button>Create an Account</button>
+        <button>Log in</button>
+        <button><a href="index.html">Cancel</a></button>
+    </div>
+    <footer>
+        <p>&copy; Group 3 BSIT 2201</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack a Face Game</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('gmbg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .score-timer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+        .game-container {
+            position: relative;
+            width: 90vw;
+            height: 90vw;
+            max-width: 500px;
+            max-height: 500px;
+            margin: auto;
+            background: url('gmbg.jpg') no-repeat center center;
+            background-size: cover;
+            border: 2px solid #000;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 100%;
+            height: 100%;
+        }
+        .cell {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+        }
+        .face {
+            display: none;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="score-timer">
+        <div>Score: <span id="score">0</span></div>
+        <div>Lives: <span id="lives">1 1 1</span></div>
+        <div>Timer: <span id="timer">60</span>s</div>
+    </div>
+    <div class="game-container">
+        <div class="grid">
+            <div class="cell" id="cell1"></div>
+            <div class="cell" id="cell2"></div>
+            <div class="cell" id="cell3"></div>
+            <div class="cell" id="cell4"></div>
+            <div class="cell" id="cell5"></div>
+            <div class="cell" id="cell6"></div>
+            <div class="cell" id="cell7"></div>
+            <div class="cell" id="cell8"></div>
+            <div class="cell" id="cell9"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cells = document.querySelectorAll('.cell');
+            const scoreDisplay = document.getElementById('score');
+            const timerDisplay = document.getElementById('timer');
+            const livesDisplay = document.getElementById('lives');
+            let score = 0;
+            let timeLeft = 60;
+            let lives = ['1', '1', '1'];
+            let gameActive = true;
+            let currentFace = null;
+            
+            function showRandomFace() {
+                if (!gameActive) return;
+                if (currentFace && currentFace.parentElement) {
+                    lives.pop();
+                    livesDisplay.textContent = lives.join('');
+                    if (lives.length === 0) {
+                        endGame();
+                        return;
+                    }
+                }
+                
+                cells.forEach(cell => cell.innerHTML = '');
+                let randomCell = cells[Math.floor(Math.random() * cells.length)];
+                let face = document.createElement('img');
+                face.src = 'face1.png';
+                face.classList.add('face');
+                face.style.display = 'block';
+                randomCell.appendChild(face);
+                currentFace = face;
+                
+                face.addEventListener('click', () => {
+                    if (gameActive) {
+                        score += 20;
+                        scoreDisplay.textContent = score;
+                        randomCell.innerHTML = '';
+                        currentFace = null;
+                    }
+                });
+            }
+
+            function endGame() {
+                gameActive = false;
+                clearInterval(faceInterval);
+                clearInterval(timer);
+                alert('Game Over! Your Score: ' + score);
+            }
+
+            let faceInterval = setInterval(showRandomFace, 3000);
+            let timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+                if (timeLeft === 0) {
+                    endGame();
+                }
+            }, 1000);
+        });
+    </script>
+    
+</body>
+
+</html>

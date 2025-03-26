@@ -1,0 +1,10 @@
+footer {
+    position: fixed; /* or fixed if you want it to always stay at the bottom of the viewport */
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    padding: 10px 0;
+    background-color:transparent;
+    color: white;
+    font-size: 14px;
+}

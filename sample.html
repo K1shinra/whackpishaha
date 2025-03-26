@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Selection</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('gmbg.jpg') no-repeat center center fixed;
+    background-size: cover;
+        }
+        a {
+            text-decoration: none;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .menu button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #007BFF;
+            color: white;
+        }
+        .menu button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="modeSelection" class="menu">
+        <h2>Select Mode</h2>
+        <button onclick="selectMode('1 Player')">1 Player</button>
+        <button onclick="selectMode('2 Player')">2 Player</button>
+    </div>
+
+    <div id="difficultySelection" class="menu">
+        <h2>Select Difficulty</h2>
+        <a href="start.html"><button>Easy</button></a>
+        <button onclick="startGame('Normal')">Normal</button>
+        <button onclick="startGame('Hard')">Hard</button>
+    </div>
+
+    <script>
+        document.getElementById('modeSelection').style.display = 'block';
+
+        function selectMode(mode) {
+            console.log("Selected Mode: " + mode);
+            document.getElementById('modeSelection').style.display = 'none';
+            document.getElementById('difficultySelection').style.display = 'block';
+        }
+
+        function startGame(difficulty) {
+            console.log("Starting game on " + difficulty + " difficulty");
+            alert("Game Started on " + difficulty + " difficulty!");
+        }
+    </script>
+
+<footer>
+    <p>&copy; Group 3 BSIT 2201</p>
+</footer>
+</body>
+</html>
